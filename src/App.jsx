@@ -289,8 +289,9 @@ function App() {
         <div className={`answer-list ${question.visual ? 'visual-answer-list' : ''}`}>
           {question.choices.map((answer, index) => {
             const isSelected = selected.includes(answer.id)
-            const isCorrect = isChecked && question.correct.includes(answer.id)
-            const isWrong = isChecked && isSelected && !isCorrect
+            const isCorrect = isChecked && isSelected && question.correct.includes(answer.id)
+            const isMissed = isChecked && !isSelected && question.correct.includes(answer.id)
+            const isWrong = isChecked && isSelected && !question.correct.includes(answer.id)
 
             return (
               <button
@@ -300,6 +301,7 @@ function App() {
                   answer.images ? 'visual-answer' : '',
                   isSelected ? 'selected' : '',
                   isCorrect ? 'answer-correct' : '',
+                  isMissed ? 'answer-missed' : '',
                   isWrong ? 'answer-wrong' : '',
                 ].join(' ')}
                 onClick={() => toggleAnswer(question.id, answer.id)}
@@ -326,7 +328,7 @@ function App() {
             {isChecked
               ? isCurrentCorrect
                 ? 'Dobra odpowiedź.'
-                : 'Poprawne odpowiedzi zostały zaznaczone na zielono.'
+                : 'Zaznaczone poprawne odpowiedzi są zielone, a pominięte poprawne odpowiedzi pomarańczowe.'
               : answerInstruction(question.correct.length)}
           </p>
           {!isChecked && (

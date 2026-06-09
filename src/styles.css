@@ -333,6 +333,19 @@ button:disabled {
   background: #1d654b;
 }
 
+.answer.answer-missed {
+  border-color: #e49a3a;
+  color: #ffe5bc;
+  background: #5b3a16;
+  opacity: 1;
+}
+
+.answer.answer-missed .answer-number {
+  border-color: #e49a3a;
+  color: #ffe5bc;
+  background: #784d1d;
+}
+
 .answer.answer-wrong {
   border-color: #e05b68;
   color: #ffd4d8;
